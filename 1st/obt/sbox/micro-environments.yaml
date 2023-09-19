@@ -1,0 +1,53 @@
+repositories:
+  - https://gitlab.com/api/v4/projects/37447132/packages/helm/stable
+  - git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
+
+microenvironments:
+  - name: ob
+    requests:
+      cpu: 30
+      memory: 22Gi
+    limits:
+      cpu: 30
+      memory: 22Gi
+    projects:
+      - name: sbox
+        labels: |
+          name: ob-sbox
+          argocd.argoproj.io/managed-by: openshift-gitops
+        microservices:
+          - name: adservice
+            gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
+            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
+            branch: sbox-app-adservice
+            chartName: microservice-base
+            chartVersion: 3.1.7
+          - name: cartservice
+            gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
+            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
+            branch: sbox-app-cartservice
+            chartName: microservice-base
+            chartVersion: 3.1.7
+
+  - name: db
+    requests:
+      cpu: 2
+      memory: 3Gi
+    limits:
+      cpu: 2
+      memory: 3Gi
+    projects:
+      - name: sbox
+        labels: |
+          name: db-sbox
+        microservices:
+          - name: mssql-payments
+            gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
+            branch: sbox-app-mssql
+            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
+            chartName: mssql-linux
+            chartVersion: 0.2.0
+
+
+
+ 

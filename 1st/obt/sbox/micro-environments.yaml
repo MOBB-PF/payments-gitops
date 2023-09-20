@@ -1,5 +1,5 @@
 repositories:
-  - https://gitlab.com/api/v4/projects/37447132/packages/helm/stable
+  - "https://mobb-pf.github.io/helm-repository"
   - git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
 
 microenvironments:
@@ -15,19 +15,6 @@ microenvironments:
         labels: |
           name: ob-sbox
           argocd.argoproj.io/managed-by: openshift-gitops
-        microservices:
-          - name: adservice
-            gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
-            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
-            branch: sbox-app-adservice
-            chartName: microservice-base
-            chartVersion: 3.1.7
-          - name: cartservice
-            gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
-            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
-            branch: sbox-app-cartservice
-            chartName: microservice-base
-            chartVersion: 3.1.7
 
   - name: db
     requests:
@@ -44,7 +31,7 @@ microenvironments:
           - name: mssql-payments
             gitRepo: git@github.com:redhat-blackbelt-online-boutique/online-boutique-cd.git
             branch: sbox-app-mssql
-            helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
+            helmRepo: "https://mobb-pf.github.io/helm-repository"
             chartName: mssql-linux
             chartVersion: 0.2.0
 

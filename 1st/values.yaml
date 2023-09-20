@@ -1,9 +1,9 @@
 defaults:
   namespace: openshift-gitops
   server: https://kubernetes.default.svc
-  repo: git@github.com:redhat-blackbelt/gitops
-  helmRepo: "https://gitlab.com/api/v4/projects/37447132/packages/helm/stable"
-  gitopsCoreVersion: 5.2.7
+  repo: https://github.com/MOBB-PF/payments-gitops
+  helmRepo: "https://mobb-pf.github.io/helm-repository"
+  argocd-payload-revision: 1.0.0
   
 teams:
   - name: obt
